@@ -24,16 +24,17 @@ st.header('Customer Segmentation example with Snowpark')
 st.write('Sample cluster data that shows the recency, frequency and monetary attributes of each customer')
 df = session.table("RFM_Clusters")
 df_pd = df.to_pandas()
-st.write(df_pd.size)
-
 st.dataframe(df_pd)
 df_pd["Cluster"] = df_pd["Cluster"].astype(str)
+
+st.subheader('Frequency vs Recency')
 
 fig = px.scatter(
     df_pd,
     x="FREQUENCY",
     y="RECENCY",
-    color="Cluster"
+    color="Cluster",
+    opacity=0.5
 )
 
 st.plotly_chart(fig, theme="streamlit", use_container_width=True)
