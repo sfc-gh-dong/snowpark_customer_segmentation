@@ -19,9 +19,9 @@ def init_connection():
         **st.secrets["snowflake"], client_session_keep_alive=True
     )
 
-conn = init_connection()
+#conn = init_connection()
 
-session = Session.builder.configs(connection=conn).create() 
+session = Session.builder.configs(**st.secrets["snowflake"]).create()
 
 # Perform query.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
