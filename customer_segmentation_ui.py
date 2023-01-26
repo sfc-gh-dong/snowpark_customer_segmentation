@@ -19,7 +19,7 @@ session = Session.builder.configs(st.secrets["snowflake"]).create()
 # Perform query.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
 
-st.header('Customer Segmentation example with Snowpark')
+st.header('Customer Segmentation example with Snowpark using K-Means')
 
 st.write('Sample cluster data that shows the recency, frequency and monetary attributes of each customer')
 df = session.table("RFM_Clusters")
@@ -33,6 +33,30 @@ fig = px.scatter(
     df_pd,
     x="FREQUENCY",
     y="RECENCY",
+    color="Cluster",
+    opacity=0.5
+)
+
+st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+
+st.subheader('Frequency vs Monetary')
+
+fig = px.scatter(
+    df_pd,
+    x="FREQUENCY",
+    y="MONETARY",
+    color="Cluster",
+    opacity=0.5
+)
+
+st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+
+st.subheader('Recency vs Monetary')
+
+fig = px.scatter(
+    df_pd,
+    x="RECENCY",
+    y="MONETARY",
     color="Cluster",
     opacity=0.5
 )
