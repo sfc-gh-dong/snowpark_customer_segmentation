@@ -14,29 +14,20 @@ import plotly.express as px
 # Uses st.experimental_singleton to only run once.
 # session = Session.builder.configs(snowflake_conn_prop).create()
 
-def init_connection():
-    return snowflake.connector.connect(
-        **st.secrets["snowflake"], client_session_keep_alive=True
-    )
-
-#conn = init_connection()
-
-st.write(st.secrets["snowflake"])
-
 session = Session.builder.configs(st.secrets["snowflake"]).create()
 
 # Perform query.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
 
+st.header('Customer Segmentation example with Snowpark')
+
+st.write('Sample cluster data that shows the recency, frequency and monetary attributes of each customer')
 df = session.table("RFM_Clusters")
-
 df_pd = df.to_pandas()
-
-st.write("Hello")
-
 st.write(df_pd.size)
 
 st.dataframe(df_pd)
+df_pd["Cluster"] = df_pd["Cluster"].astype(str)
 
 fig = px.scatter(
     df_pd,
