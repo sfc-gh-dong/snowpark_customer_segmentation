@@ -7,11 +7,20 @@ import numpy as np
 import plotly.express as px
 
 # Snowflake connection info is saved in config.py
-from config import snowflake_conn_prop
+# from config import snowflake_conn_prop
 
 # Initialize connection.
 # Uses st.experimental_singleton to only run once.
-session = Session.builder.configs(snowflake_conn_prop).create()
+# session = Session.builder.configs(snowflake_conn_prop).create()
+
+def init_connection():
+    return snowflake.connector.connect(
+        **st.secrets["snowflake"], client_session_keep_alive=True
+    )
+
+conn = init_connection()
+
+session = Session.builder.configs(connection=conn).create() 
 
 # Perform query.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
