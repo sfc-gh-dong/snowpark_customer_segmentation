@@ -21,6 +21,8 @@ def init_connection():
 
 #conn = init_connection()
 
+print (**st.secrets["snowflake"])
+
 session = Session.builder.configs(**st.secrets["snowflake"]).create()
 
 # Perform query.
