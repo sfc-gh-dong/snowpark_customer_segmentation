@@ -21,9 +21,9 @@ def init_connection():
 
 #conn = init_connection()
 
-print (**st.secrets["snowflake"])
+st.write(st.secrets["snowflake"])
 
-session = Session.builder.configs(**st.secrets["snowflake"]).create()
+session = Session.builder.configs(st.secrets["snowflake"]).create()
 
 # Perform query.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
