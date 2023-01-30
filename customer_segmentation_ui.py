@@ -66,7 +66,7 @@ st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 st.markdown("**:red[Cluster 2]** are your Loyalists. They generally spend more money and more frequently.")
 st.markdown("**:blue[Cluster 1]** spend less money and less frequently, but they spent in the last 5 months.")
 st.markdown("**:orange[Cluster 3]** spend less money and less frequently, but they spent beyond the last 5 months.")
-st.markdown("**[Cluster 0]** sit somewhere in between.")
+st.markdown("**Cluster** **0** sit somewhere in between.")
 
 
 
