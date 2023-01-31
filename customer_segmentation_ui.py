@@ -21,7 +21,7 @@ session = Session.builder.configs(st.secrets["snowflake"]).create()
 
 st.header('Customer Segmentation example with Snowpark using K-Means')
 
-st.write('Sample cluster data that shows the recency, frequency and monetary attributes of each customer')
+st.write('Sample cluster data that shows the recency, frequency and monetary attributes of each customer. Data live from Snowflake')
 df = session.table("RFM_Clusters")
 df_pd = df.to_pandas()
 st.dataframe(df_pd)
