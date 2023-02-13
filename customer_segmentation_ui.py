@@ -27,8 +27,8 @@ st.write('Sample cluster data that shows the recency, frequency and monetary att
 def get_data():
     df = session.table("RFM_Clusters")
     df_pd = df.to_pandas()
-    st.dataframe(df_pd)
     df_pd["Cluster"] = df_pd["Cluster"].astype(str)
+
     return df_pd
 
 def main():
@@ -36,6 +36,7 @@ def main():
     st.subheader('Frequency vs Recency')
 
     df_pd = get_data()
+    st.dataframe(df_pd)
 
     fig = px.scatter(
         df_pd,
