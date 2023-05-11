@@ -25,7 +25,7 @@ st.write('Sample cluster data that shows the recency, frequency and monetary att
 
 @st.cache_data
 def get_data():
-    return session.table("RFM_Clusters").limit(1000).to_pandas()
+    return session.table("RFM_Clusters").to_pandas()
 
 def main():
 
